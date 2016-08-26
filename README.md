@@ -2,6 +2,12 @@
 
 prototype for API
 
+We use `gnunicorn` for servicing the app:
+
+```
+gunicorn app
+```
+
 ## Testing the initial User resource:
 
 ```
