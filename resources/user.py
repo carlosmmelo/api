@@ -7,6 +7,13 @@ class UserCollection(object):
         resp.body = '{"message": "Get user list success"}'
         resp.status = falcon.HTTP_200
 
+
+class User(object):
+
+    def on_get(self, req, resp):
+        resp.body = '{"message": "Get user list success"}'
+        resp.status = falcon.HTTP_200
+
     def on_post(self, req, resp):
         resp.body = '{"message" Create user success}'
         resp.status = falcon.HTTP_201
