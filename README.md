@@ -92,5 +92,17 @@ INSERT INTO Users (firstname, lastname, isadmin, email, datemodified)
     VALUES ('test2', 'test2', False, 'test2@gmail.com', TIMESTAMP '2016-08-28 02:36:38');
 ```
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<table border="1" style="border-collapse:collapse">
+<tr><th>id</th><th>firstname</th><th>lastname</th><th>isadmin</th><th>email</th><th>datecreated</th><th>datemodified</th></tr>
+<tr><td>1</td><td>test</td><td>test1</td><td>false</td><td>test@gmail.com</td><td>2016-08-27 14:04:40.415385</td><td>2011-05-16 15:36:38.000000</td></tr>
+<tr><td>2</td><td>test2</td><td>test2</td><td>false</td><td>test2@gmail.com</td><td>2016-08-28 01:43:52.880591</td><td>2016-08-28 02:36:38.000000</td></tr></table>
+</body>
+</html>
 
 Please refer to the DDL for new updates
