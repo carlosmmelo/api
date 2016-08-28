@@ -9,7 +9,7 @@ class UserCollection(object):
 
     def on_get(self, req, resp):
         user_list = Postgres.send_committed_query(self.postgres_session, constant.GET_ALL_USERS)
-        resp.body = """{{"message": "Get user list success", "users": "{list}"}}""".format(list=user_list)
+        resp.body = """{{"message": "Get user list success", "users": {list}}}""".format(list=user_list)
         resp.status = falcon.HTTP_200
 
 

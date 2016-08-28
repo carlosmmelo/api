@@ -62,6 +62,25 @@ content-type: application/json; charset=utf-8
 
 {
     "message": "Get user list success",
-    "users": "[{'email': 'test@gmail.com', 'lastname': 'test1', 'isadmin': False, 'datecreated': datetime.datetime(2016, 8, 27, 14, 4, 40, 415385), 'id': 1, 'datemodified': datetime.datetime(2011, 5, 16, 15, 36, 38), 'firstname': 'test'}, {'email': 'test2@gmail.com', 'lastname': 'test2', 'isadmin': False, 'datecreated': datetime.datetime(2016, 8, 28, 1, 43, 52, 880591), 'id': 2, 'datemodified': datetime.datetime(2016, 8, 28, 2, 36, 38), 'firstname': 'test2'}]"
+    "users": [
+                {
+                    'email': 'test@gmail.com',
+                    'lastname': 'test1',
+                    'isadmin': False,
+                    'datecreated': datetime.datetime(2016, 8, 27, 14, 4, 40, 415385),
+                    'id': 1,
+                    'datemodified': datetime.datetime(2011, 5, 16, 15, 36, 38),
+                    'firstname': 'test'
+                }, 
+                {
+                    'email': 'test2@gmail.com',
+                    'lastname': 'test2',
+                    'isadmin': False,
+                    'datecreated': datetime.datetime(2016, 8, 28, 1, 43, 52, 880591),
+                    'id': 2,
+                    'datemodified': datetime.datetime(2016, 8, 28, 2, 36, 38),
+                    'firstname': 'test2'
+                }
+             ]
 }
 ```
