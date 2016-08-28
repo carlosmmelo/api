@@ -1,10 +1,15 @@
 import falcon
+from data_sources.postgres import Postgres
+from resources import constant
 
 
 class UserCollection(object):
 
+    postgres_session = Postgres()
+
     def on_get(self, req, resp):
-        resp.body = '{"message": "Get user list success"}'
+        user_list = Postgres.send_committed_query(self.postgres_session, constant.GET_ALL_USERS)
+        resp.body = """{{"message": "Get user list success", "users": "{list}"}}""".format(list=user_list)
         resp.status = falcon.HTTP_200
 
 

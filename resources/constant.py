@@ -1,0 +1,1 @@
+GET_ALL_USERS = """SELECT * FROM Users"""
