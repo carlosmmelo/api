@@ -84,3 +84,13 @@ content-type: application/json; charset=utf-8
              ]
 }
 ```
+
+## Sample adding a new user to the User table
+
+```
+INSERT INTO Users (firstname, lastname, isadmin, email, datemodified)
+    VALUES ('test2', 'test2', False, 'test2@gmail.com', TIMESTAMP '2016-08-28 02:36:38');
+```
+
+
+Please refer to the DDL for new updates
