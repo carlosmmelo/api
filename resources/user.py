@@ -19,10 +19,14 @@ class UserCollection(object):
 class User(object):
 
     def on_get(self, req, resp):
-        resp.body = '{"message": "Get user success"}'
-        print(req.query_string)
-        print(req.params)
-        resp.status = falcon.HTTP_200
+        if not req.params:
+            raise falcon.HTTPMissingParam('name or email')
+        for param in req.params:
+            if param not in ['name', 'email']:
+                raise falcon.HTTPInvalidParam('Please use name or email as parameter', param)
+            else:
+                resp.body = '{"message": "Get user success"}'
+                resp.status = falcon.HTTP_200
 
     def on_post(self, req, resp):
         resp.body = '{"message" Create user success}'
