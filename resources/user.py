@@ -12,7 +12,7 @@ class UserCollection(object):
     def on_get(self, req, resp):
         user_list = Postgres.send_committed_query(self.postgres_session, constant.GET_ALL_USERS)
         json.JSONEncoder.default = lambda self, obj: (obj.isoformat() if isinstance(obj, datetime.datetime) else None)
-        resp.body = """{{"message": "Get user list success", "users": {list}}}""".format(list=json.dumps(user_list))
+        resp.body = json.dumps({"message": "Get user list success", "users": user_list})
         resp.status = falcon.HTTP_200
 
 
