@@ -1,6 +1,8 @@
 import falcon
 from data_sources.postgres import Postgres
 from resources import constant
+import json
+import datetime
 
 
 class UserCollection(object):
@@ -9,14 +11,17 @@ class UserCollection(object):
 
     def on_get(self, req, resp):
         user_list = Postgres.send_committed_query(self.postgres_session, constant.GET_ALL_USERS)
-        resp.body = """{{"message": "Get user list success", "users": {list}}}""".format(list=user_list)
+        json.JSONEncoder.default = lambda self, obj: (obj.isoformat() if isinstance(obj, datetime.datetime) else None)
+        resp.body = """{{"message": "Get user list success", "users": {list}}}""".format(list=json.dumps(user_list))
         resp.status = falcon.HTTP_200
 
 
 class User(object):
 
     def on_get(self, req, resp):
-        resp.body = '{"message": "Get user list success"}'
+        resp.body = '{"message": "Get user success"}'
+        print(req.query_string)
+        print(req.params)
         resp.status = falcon.HTTP_200
 
     def on_post(self, req, resp):
