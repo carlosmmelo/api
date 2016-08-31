@@ -4,14 +4,14 @@ from resources import constant
 import json
 import datetime
 
+postgres_session = Postgres()
+json.JSONEncoder.default = lambda self, obj: (obj.isoformat() if isinstance(obj, datetime.datetime) else None)
+
 
 class UserCollection(object):
 
-    postgres_session = Postgres()
-
     def on_get(self, req, resp):
-        user_list = Postgres.send_committed_query(self.postgres_session, constant.GET_ALL_USERS)
-        json.JSONEncoder.default = lambda self, obj: (obj.isoformat() if isinstance(obj, datetime.datetime) else None)
+        user_list = Postgres.send_committed_query(postgres_session, constant.GET_ALL_USERS)
         resp.body = json.dumps({"message": "Get user list success", "users": user_list})
         resp.status = falcon.HTTP_200
 
@@ -22,10 +22,11 @@ class User(object):
         if not req.params:
             raise falcon.HTTPMissingParam('name or email')
         for param in req.params:
-            if param not in ['name', 'email']:
+            if param not in ['firstname', 'lastname', 'email']:
                 raise falcon.HTTPInvalidParam('Please use name or email as parameter', param)
             else:
-                resp.body = '{"message": "Get user success"}'
+                user_search = Postgres.send_committed_query(postgres_session, constant.SEARCH_USER.format(param=param, val=req.params[param]))
+                resp.body = json.dumps({"message": "Search for user success", "users": user_search})
                 resp.status = falcon.HTTP_200
 
     def on_post(self, req, resp):
