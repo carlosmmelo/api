@@ -106,3 +106,40 @@ INSERT INTO Users (firstname, lastname, isadmin, email, datemodified)
 </html>
 
 Please refer to the DDL for new updates
+
+
+## Testing the new search for user
+
+```
+(api) ➜  api git:(master) ✗ http localhost:8000/user/ firstname==test
+HTTP/1.1 200 OK
+Connection: close
+Date: Wed, 31 Aug 2016 04:02:22 GMT
+Server: gunicorn/19.4.5
+content-length: 505
+content-type: application/json; charset=utf-8
+
+{
+    "message": "Search for user success",
+    "users": [
+        {
+            "datecreated": "2016-08-30T11:01:23.152209",
+            "datemodified": "2016-08-30T11:01:23.152209",
+            "email": "test2@gmail.com",
+            "firstname": "test2",
+            "id": "28c6c2f2-35e8-446c-abaf-d7739dd5f1ab",
+            "isadmin": false,
+            "lastname": "test2"
+        },
+        {
+            "datecreated": "2016-08-30T11:02:02.552828",
+            "datemodified": "2016-08-30T11:02:02.552828",
+            "email": "test1@gmail.com",
+            "firstname": "test1",
+            "id": "02bd2e01-397f-471f-9551-40122de13143",
+            "isadmin": false,
+            "lastname": "test1"
+        }
+    ]
+}
+```
